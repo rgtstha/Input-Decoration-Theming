@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inputdecoration_theme/app_text_form_field.dart';
 import 'package:inputdecoration_theme/validator.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -24,9 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter app'),
-      ),
+      appBar: AppBar(title: const Text('Flutter app')),
       body: Form(
         key: _key,
         child: Padding(
@@ -34,32 +33,31 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: [
               const SizedBox(height: 50),
-              TextFormField(
+              AppTextFormField(
+                labelText: "Name",
                 controller: _nameController,
                 validator: Validator.validateName,
-                decoration: const InputDecoration(
-                  labelText: "Name",
-                ),
               ),
               const SizedBox(height: 20),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Password",
-                ),
+              AppTextFormField(
+                labelText: "Password",
+                isPasswordField: true,
                 controller: _passwordController,
                 validator: Validator.validatePassword,
               ),
               const SizedBox(height: 40),
               ElevatedButton(
+                onPressed: onLoginButtonPressed,
                 child: const Text("Login"),
-                onPressed: () {
-                  if (_key.currentState!.validate()) {}
-                },
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void onLoginButtonPressed() {
+    if (_key.currentState!.validate()) {}
   }
 }

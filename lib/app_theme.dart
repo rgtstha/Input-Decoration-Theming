@@ -6,6 +6,7 @@ class AppTheme {
 
   static ThemeData light = ThemeData.light().copyWith(
     inputDecorationTheme: inputDecorationTheme,
+    textSelectionTheme: textSelectionTheme,
   );
 
   static get inputDecorationTheme => InputDecorationTheme(
@@ -85,5 +86,9 @@ class AppTheme {
             return inputBorder;
           },
         ),
+      );
+
+  static TextSelectionThemeData get textSelectionTheme => const TextSelectionThemeData(
+        cursorColor: AppColor.focusedColor,
       );
 }
